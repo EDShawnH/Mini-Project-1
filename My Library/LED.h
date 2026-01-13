@@ -3,10 +3,19 @@
 
 #include "main.h"
 
+typedef enum
+{
+	
+	LED_ON,
+	LED_OFF,
+	LED_BREATH,
+	
+} LED_mode;
+
 typedef struct
 {
 	
-	uint8_t LED_mode;
+	LED_mode mode;
 	uint8_t state;
 	uint8_t brightness;
 	uint8_t brightness_incr;

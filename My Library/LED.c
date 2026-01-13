@@ -30,16 +30,16 @@ void PWM_Set_DutyCycle(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t DT)
 
 void LED_handle(LED_Typedef *LED)
 {
-	switch (LED->LED_mode)
+	switch (LED->mode)
 	{
-		case 0:
+		case LED_OFF:
 			if (LED->state != 0) 
 			{
 				HAL_TIM_PWM_Stop(LED->htim, LED->Channel);
 				LED->state = 0;
 			}
 			break;
-		case 1:
+		case LED_ON:
 			if (LED->state != 1) 
 			{
 				LED->brightness = BRIGHT_MAX;
@@ -48,7 +48,7 @@ void LED_handle(LED_Typedef *LED)
 				LED->state = 1;
 			}
 			break;
-		case 2:
+		case LED_BREATH:
 			if (HAL_GetTick() - LED->time_change >= PERIOD_MS/20)
 			{
 				if (LED->brightness >= BRIGHT_MAX) 
@@ -70,7 +70,7 @@ void LED_handle(LED_Typedef *LED)
 
 void LED_init(LED_Typedef *LED, TIM_HandleTypeDef *htim, uint32_t Channel)
 {
-	LED -> LED_mode 				= 0;
+	LED -> mode 						= LED_OFF;
 	LED -> state 						= 0;
 	LED -> brightness 			= BRIGHT_MAX;
 	LED -> brightness_incr 	= 0;

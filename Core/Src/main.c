@@ -62,8 +62,8 @@ static void MX_TIM1_Init(void);
 /* USER CODE BEGIN 0 */
 void Button_short_pressing_callback()
 {
-	LED1.LED_mode++;
-	if (LED1.LED_mode == 3) LED1.LED_mode = 0;
+	LED1.mode++;
+	if (LED1.mode == LED_BREATH) LED1.mode = LED_OFF;
 }
 
 /* USER CODE END 0 */
